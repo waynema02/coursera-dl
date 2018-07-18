@@ -687,10 +687,10 @@ class CourseraOnDemand(object):
                     logging.info('Creating [%s] directories...', head)
                     os.makedirs(self._course_name + "/notebook/" + head + "/")
 
-                r = requests.get(tmp_url.replace(" ", "%20"),
-                                 cookies=self._session.cookies)
                 if not os.path.exists(self._course_name + "/notebook/" + head + "/" + tail):
                     logging.info('Downloading %s into %s', tail, head)
+                    r = requests.get(tmp_url.replace(" ", "%20"),
+                                    cookies=self._session.cookies)
                     with open(self._course_name + "/notebook/" + head + "/" + tail, 'wb+') as f:
                         f.write(r.content)
                 else:
